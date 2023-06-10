@@ -4,16 +4,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import jakarta.ws.rs.QueryParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.unir.products.model.pojo.Product;
 import com.unir.products.model.request.CreateProductRequest;
@@ -42,16 +36,17 @@ public class ProductsController {
 		}
 	}
 
-	@GetMapping("/products/{productId}")
-	public ResponseEntity<Product> getProduct(@PathVariable Integer productId) {
+	@GetMapping("/products/available")
+	public ResponseEntity<Boolean> getProduct(@RequestParam Integer productoId,
+											  @RequestParam Integer cantidad) {
 
-		log.info("Request received for product {}", productId);
-		Product product = service.getProduct(productId);
+		log.info("Request received for product {}", productoId);
+		Product product = service.getProduct(productoId);
 
-		if (product != null) {
-			return ResponseEntity.ok(product);
+		if (product != null && product.getStock() >= cantidad) {
+			return ResponseEntity.ok(true);
 		} else {
-			return ResponseEntity.notFound().build();
+			return ResponseEntity.ok(false);
 		}
 
 	}
