@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import jakarta.ws.rs.QueryParam;
+//import jakarta.ws.rs.QueryParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,8 @@ public class ProductsController {
 	private final ProductsService service;
 
 	@GetMapping("/products")
-	public ResponseEntity<List<Product>> getProducts(@RequestHeader Map<String, String> headers) {
+	public ResponseEntity<List<Product>> getProducts(
+			@RequestHeader Map<String, String> headers) {
 
 		log.info("headers: {}", headers);
 		List<Product> products = service.getProducts();

@@ -14,9 +14,10 @@ import java.math.BigDecimal;
 public class CreateProductRequest {
 
 	private Integer productoid;
-	private String proveedorid;
+	private String nombre;
 	private String categoriaid;
 	private String descripcion;
-	private Float preciounit;
+	private Double preciounit;
     private Integer stock;
+	private Boolean visible;
 }

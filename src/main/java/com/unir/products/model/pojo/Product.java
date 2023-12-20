@@ -27,11 +27,8 @@ public class Product {
 
 
 	@Id
-/*	@GeneratedValue(strategy = GenerationType.AUTO)*/
 	private Integer productoid;
 
-	@Column(name = "proveedorid")
-	private Integer proveedorid;
 
 	@Column(name = "categoriaid")
 	private Integer categoriaid;
@@ -39,10 +36,16 @@ public class Product {
 	@Column(name = "descripcion")
 	private String descripcion;
 
+	@Column(name = "nombre")
+	private String nombre;
+
 	@Column(name = "preciounit")
-	private BigDecimal preciounit;
+	private Double preciounit;
 
 	@Column(name = "stock")
 	private Integer stock;
+
+	@Column(name = "visible")
+	private Boolean visible;
 
 }

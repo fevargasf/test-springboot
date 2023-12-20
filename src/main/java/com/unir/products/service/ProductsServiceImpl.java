@@ -50,12 +50,12 @@ public class ProductsServiceImpl implements ProductsService {
 
 		if (request != null && StringUtils.hasLength(request.getDescripcion().trim())
 				&& StringUtils.hasLength(String.valueOf(request.getProductoid()).trim())
-				&& StringUtils.hasLength(request.getCategoriaid().trim())
+				&& StringUtils.hasLength(String.valueOf(request.getCategoriaid()).trim())
 				&& StringUtils.hasLength(String.valueOf(request.getStock()).trim())
-				&& StringUtils.hasLength(String.valueOf(request.getProveedorid()).trim()) && request.getPreciounit() != null) {
+				&& StringUtils.hasLength(String.valueOf(request.getNombre()).trim()) && request.getPreciounit() != null) {
 
-			Product product = Product.builder().descripcion(request.getDescripcion()).stock(Integer.valueOf(request.getStock()))
-					.categoriaid(Integer.valueOf(request.getCategoriaid())).proveedorid(Integer.valueOf(request.getProveedorid())).preciounit(BigDecimal.valueOf(request.getPreciounit())).productoid(Integer.valueOf(request.getProductoid())).build();
+			Product product = Product.builder().descripcion(request.getDescripcion()).stock(Integer.valueOf(request.getStock())).nombre(String.valueOf (request.getNombre()))
+					.categoriaid(Integer.valueOf(request.getCategoriaid())).visible(Boolean.valueOf(request.getVisible())).preciounit(Double.valueOf(request.getPreciounit())).productoid(Integer.valueOf(request.getProductoid())).build();
 
 			return repository.save(product);
 		} else {
@@ -67,12 +67,12 @@ public class ProductsServiceImpl implements ProductsService {
 	public Product updateProduct(CreateProductRequest request) {
 		if (request != null && StringUtils.hasLength(request.getDescripcion().trim())
 				&& StringUtils.hasLength(String.valueOf(request.getProductoid()).trim())
-				&& StringUtils.hasLength(request.getCategoriaid().trim())
+				&& StringUtils.hasLength(String.valueOf(request.getCategoriaid()).trim())
 				&& StringUtils.hasLength(String.valueOf(request.getStock()).trim())
-				&& StringUtils.hasLength(String.valueOf(request.getProveedorid()).trim()) && request.getPreciounit() != null) {
+				&& StringUtils.hasLength(String.valueOf(request.getVisible()).trim()) && request.getPreciounit() != null) {
 
 			Product product = Product.builder().descripcion(request.getDescripcion()).stock(Integer.valueOf(request.getStock()))
-					.categoriaid(Integer.valueOf(request.getCategoriaid())).proveedorid(Integer.valueOf(request.getProveedorid())).preciounit(BigDecimal.valueOf(request.getPreciounit())).productoid(Integer.valueOf(request.getProductoid())).build();
+					.categoriaid(Integer.valueOf(request.getCategoriaid())).visible(Boolean.valueOf(request.getVisible())).preciounit(Double.valueOf(request.getPreciounit())).productoid(Integer.valueOf(request.getProductoid())).build();
 
 			return repository.save(product);
 		} else {
